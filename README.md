@@ -42,7 +42,7 @@
 
 ---
 
-## <img src="assets/selim-pdf-diff.png" width="36" align="center" alt=""> Selim PDF Diff
+## <img src="assets/Diff_PDF.ico" width="36" align="center" alt=""> Selim PDF Diff
 
 두 개의 PDF 도면을 동일한 페이지와 좌표를 기준으로 비교하여 실제로 변경된 부분을 표시하는 Windows 데스크톱 프로그램입니다.
 
@@ -76,7 +76,7 @@
 
 ---
 
-## <img src="assets/selim-fileray.png" width="36" align="center" alt=""> Selim FileRay
+## <img src="assets/fileRay_Selim.png" width="36" align="center" alt=""> Selim FileRay
 
 사용자가 등록한 로컬 폴더의 파일명과 문서 본문을 인덱싱하여 필요한 업무 자료를 빠르게 검색하고 미리 볼 수 있는 Windows용 오프라인 문서 검색 프로그램입니다.
 
