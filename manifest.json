@@ -3,14 +3,14 @@
   "hub": {
     "id": "hub",
     "name": "Selim Tools",
-    "version": "",
+    "version": "1.0.0",
     "kind": "installer",
-    "url": "",
-    "sha256": "",
-    "size": 0,
+    "url": "https://github.com/minsangOh/Selim-Tools/releases/download/hub-v1.0.0/SelimTools-Setup-1.0.0.exe",
+    "sha256": "6eac86fec0a82ce6c697e815453c5bd4e51204ba75784a2c266e1f99ed83d1da",
+    "size": 26675248,
     "exe": "SelimTools.exe",
     "uninstall_key": "SelimTools",
-    "notes": ""
+    "notes": "https://github.com/minsangOh/Selim-Tools/releases/tag/hub-v1.0.0"
   },
   "apps": [
     {
