@@ -30,14 +30,14 @@
       "id": "ctq",
       "name": "CTQ 승인원 자동입력",
       "description": "새 승인원의 CTQ 시트에 DB의 측정값과 사진을 채웁니다. 에어컨·냉장고, Excel 필요.",
-      "version": "",
+      "version": "1.3.0",
       "kind": "portable",
-      "url": "",
-      "sha256": "",
-      "size": 0,
+      "url": "https://github.com/minsangOh/Selim-Tools/releases/download/ctq-v1.3.0/CTQ_AutoInput_v1.3.0.exe",
+      "sha256": "17dd0c98d8dc67e5cfb5787bfd233db6d163d2f6a40776517dcdc9c6381132e0",
+      "size": 24716768,
       "exe": "CTQ자동입력.exe",
       "icon": "assets/ctq.ico",
-      "notes": ""
+      "notes": "https://github.com/minsangOh/Selim-Tools/releases/tag/ctq-v1.3.0"
     },
     {
       "id": "fileray",
