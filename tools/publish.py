@@ -92,7 +92,7 @@ def main() -> None:
             notes, expected = "", ""
         else:
             version, path, notes, expected = source_release(args.app, args.tag, Path(folder))
-        # 원본 저장소의 Latest가 목록보다 옛 버전일 수 있다 (Diff_PDF의 Latest는 설치형 이전의 v1.1.1)
+        # 같은 버전을 다시 올리거나 목록을 옛 버전으로 되돌리지 않는다
         if entry["version"] and version_key(version) <= version_key(entry["version"]):
             sys.exit(f"{entry['name']}: 목록에 이미 v{entry['version']}이 있어 v{version}은 올리지 않습니다.")
         digest = sha256(path)
