@@ -233,9 +233,12 @@ def install(app: App, progress: Progress | None = None, cancel: threading.Event 
         return
     setup = DATA_DIR / "downloads" / Path(urlparse(app.url).path).name
     download(app.url, setup, app.sha256, app.size, progress, cancel)
+    # FileRay·PDF Diff 설치 파일은 모두 사용자 단위 NSIS라 관리자 권한 없이 /S로 조용히 설치된다.
+    # 업데이트면 /UPDATE도 넘긴다. FileRay(Tauri) 설치 파일은 무인 설치 때마다 바탕 화면 바로가기를 새로 만드는데,
+    # /UPDATE가 있으면 사용자가 지운 바로가기를 되살리지 않는다. 이 옵션을 모르는 설치 파일은 무시한다
+    args = [str(setup), "/S"] + (["/UPDATE"] if installed_exe(app) is not None else [])
     try:
-        # FileRay·PDF Diff 설치 파일은 모두 사용자 단위 NSIS라 관리자 권한 없이 /S로 조용히 설치된다
-        code = subprocess.run([str(setup), "/S"], check=False).returncode
+        code = subprocess.run(args, check=False).returncode
     except OSError as exc:
         raise HubError(f"{app.name} 설치 프로그램을 실행하지 못했습니다. ({exc})") from exc
     finally:

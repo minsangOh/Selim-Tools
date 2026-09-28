@@ -181,7 +181,7 @@ class PortableTests(CoreTestCase):
 
 
 class InstallerTests(CoreTestCase):
-    """실제 NSIS 대신 /S를 받으면 설치 폴더와 Uninstall 키를 남기는 .cmd로 시험한다."""
+    """실제 NSIS 대신 /S를 받으면 설치 폴더와 Uninstall 키를 남기는 .cmd로 시험한다. 받은 인자는 args.txt에 남긴다."""
 
     def setUp(self) -> None:
         super().setUp()
@@ -212,6 +212,7 @@ class InstallerTests(CoreTestCase):
             "@echo off\r\n"
             'if not "%~1"=="/S" exit /b 9\r\n'
             f'mkdir "{self.target}" 2>nul\r\n'
+            f'>"{self.target}\\args.txt" echo %*\r\n'
             f'copy /y "%~f0" "{self.target}\\demo.exe" >nul\r\n'
             f'reg add "HKCU\\{TEST_KEY}\\Demo" /v DisplayVersion /d {version} /f >nul\r\n'
             f'reg add "HKCU\\{TEST_KEY}\\Demo" /v InstallLocation /d "{self.target}" /f >nul\r\n'
@@ -227,6 +228,13 @@ class InstallerTests(CoreTestCase):
         self.assertEqual(core.installed_version(app), "2.0.0")
         self.launch.assert_called_once_with(self.target / "demo.exe")
         self.assertEqual(list((core.DATA_DIR / "downloads").iterdir()), [])  # 설치 파일은 지운다
+
+    def test_only_updates_pass_the_update_flag(self) -> None:
+        # FileRay(Tauri) 설치 파일은 /UPDATE가 있어야 사용자가 지운 바탕 화면 바로가기를 되살리지 않는다
+        core.run(self.setup_app("1.0.0"))
+        self.assertEqual("/S", (self.target / "args.txt").read_text().strip())
+        core.run(self.setup_app("2.0.0"))
+        self.assertEqual("/S /UPDATE", (self.target / "args.txt").read_text().strip())
 
     def test_failing_installer_is_reported(self) -> None:
         with self.assertRaises(core.HubError) as caught:
