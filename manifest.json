@@ -57,15 +57,15 @@
       "id": "pdfdiff",
       "name": "Selim PDF Diff",
       "description": "두 PDF 도면을 같은 좌표로 겹쳐 비교하고 바뀐 부분을 표시합니다.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "kind": "installer",
-      "url": "https://github.com/minsangOh/Selim-Tools/releases/download/v2.0.0/SelimPDFDiff-Setup-2.0.0.exe",
-      "sha256": "e4dfbbc8226384942e6f9e35d8c3301f747962f64956aeceacc410acedee4104",
-      "size": 52895263,
+      "url": "https://github.com/minsangOh/Selim-Tools/releases/download/pdfdiff-v2.0.1/SelimPDFDiff-Setup-2.0.1.exe",
+      "sha256": "820cc91313db3c57fb860053cd0e276a9097956ea1bb27402cadcce3ca045401",
+      "size": 53061015,
       "exe": "SelimPDFDiff.exe",
       "uninstall_key": "SelimPDFDiff",
       "icon": "assets/Diff_PDF.ico",
-      "notes": "https://github.com/minsangOh/Selim-Tools/releases/tag/v2.0.0"
+      "notes": "https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.0.1"
     }
   ]
 }
