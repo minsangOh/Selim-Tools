@@ -7,12 +7,14 @@
 순서: 파일 준비 → 해시 확인 → Selim-Tools 릴리스 생성 → manifest.json 갱신 → 커밋·푸시.
 manifest는 첨부 파일이 올라간 뒤에만 바뀌므로, 허브가 아직 없는 파일을 가리키는 때는 없다.
 gh CLI 로그인이 필요하다.
+원본 저장소에 정식 릴리스를 만들면 GitHub Actions(.github/workflows/publish.yml)가 이 스크립트를 자동으로 실행한다.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -31,8 +33,9 @@ SOURCES = {
 }
 
 
-def run(*args: str) -> str:
-    result = subprocess.run(args, cwd=ROOT, capture_output=True, text=True, encoding="utf-8")
+def run(*args: str, token: str | None = None) -> str:
+    env = {**os.environ, "GH_TOKEN": token} if token else None
+    result = subprocess.run(args, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", env=env)
     if result.returncode != 0:
         sys.exit(f"실패: {' '.join(args)}\n{result.stderr.strip()}")
     return result.stdout
@@ -53,12 +56,14 @@ def version_key(text: str) -> tuple[int, ...]:
 def source_release(app_id: str, tag: str | None, folder: Path) -> tuple[str, Path, str, str]:
     """원본 릴리스의 exe를 받는다. (버전, 파일, 릴리스 노트, GitHub에 기록된 sha256)"""
     repo = SOURCES[app_id]
-    info = json.loads(run("gh", "api", f"repos/{repo}/releases/" + (f"tags/{tag}" if tag else "latest")))
+    # GitHub Actions에서는 원본 저장소가 넘겨준 토큰으로 받는다. 원본 저장소는 비공개라 Selim-Tools용 토큰으로는 읽지 못한다
+    token = os.environ.get("SOURCE_GH_TOKEN")
+    info = json.loads(run("gh", "api", f"repos/{repo}/releases/" + (f"tags/{tag}" if tag else "latest"), token=token))
     exes = [asset for asset in info["assets"] if asset["name"].lower().endswith(".exe")]
     if len(exes) != 1:
         sys.exit(f"{repo} {info['tag_name']}: exe 첨부 파일이 {len(exes)}개입니다. 하나여야 합니다.")
     asset = exes[0]
-    run("gh", "release", "download", info["tag_name"], "-R", repo, "-p", asset["name"], "-D", str(folder))
+    run("gh", "release", "download", info["tag_name"], "-R", repo, "-p", asset["name"], "-D", str(folder), token=token)
     return info["tag_name"].lstrip("v"), folder / asset["name"], info["body"] or "", asset.get("digest") or ""
 
 
@@ -121,7 +126,13 @@ def main() -> None:
     MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     run("git", "add", "manifest.json")
     run("git", "commit", "-m", f"Publish {entry['name']} v{version}")
-    run("git", "push")
+    # 다른 원본 저장소의 배포가 먼저 푸시했으면 그 위로 옮겨 다시 푸시한다
+    for _ in range(3):
+        if subprocess.run(["git", "push"], cwd=ROOT).returncode == 0:
+            break
+        run("git", "pull", "--rebase")
+    else:
+        sys.exit("manifest.json을 푸시하지 못했습니다.")
     print(f"완료: {release['html_url']}")
 
 

@@ -108,7 +108,9 @@ Selim Tools를 제거해도 Selim Tools가 설치한 프로그램과 그 데이�
 
 ## 관리자용: 새 버전 배포
 
-Selim Tools는 이 저장소 `master`의 [`manifest.json`](manifest.json)을 읽어 프로그램마다 최신 버전을 판단합니다. 원본 저장소에 릴리스를 만든 뒤 이 저장소에서 다음을 실행하면, Selim-Tools 릴리스 생성부터 `manifest.json` 갱신·푸시까지 한 번에 처리합니다 (gh CLI 로그인 필요).
+Selim Tools는 이 저장소 `master`의 [`manifest.json`](manifest.json)을 읽어 프로그램마다 최신 버전을 판단합니다. 원본 저장소에 정식 릴리스를 만들면 원본 저장소의 `.github/workflows/selim-tools.yml`이 이 저장소의 [`publish.yml`](.github/workflows/publish.yml)을 부르고, Selim-Tools 릴리스 생성부터 `manifest.json` 갱신·푸시까지 자동으로 처리합니다. 결과는 원본 저장소의 **Actions** 탭에서 볼 수 있습니다. 프리릴리스는 올리지 않습니다.
+
+자동 실행이 실패했거나 지난 릴리스를 올릴 때는 원본 저장소의 **Actions → Selim Tools에 올리기 → Run workflow**에 태그를 넣어 실행합니다. 이 저장소에서 직접 실행해도 됩니다 (gh CLI 로그인 필요).
 
 ```powershell
 python tools/publish.py ctq                    # 원본 저장소의 Latest 릴리스
@@ -127,6 +129,15 @@ python tools/publish.py fileray --tag v0.4.0   # 태그 지정
 - 앱 릴리스의 태그는 `<id>-v<버전>`입니다. Selim Tools 릴리스(`hub-v…`)만 **Latest**로 두어, 위의 "최신 릴리스" 링크가 늘 Selim Tools 설치 파일을 가리키게 합니다.
 - `manifest.json`이 바뀌면 각 PC의 Selim Tools는 다음 실행이나 **새로 고침** 때 새 목록을 받습니다 (GitHub 캐시로 몇 분 늦을 수 있습니다).
 
+### 자동 배포 설정
+
+원본 저장소의 워크플로가 Selim-Tools에 릴리스를 만들고 푸시하려면 토큰이 필요합니다. 처음 한 번만 설정합니다.
+
+1. GitHub **Settings → Developer settings → Personal access tokens → Fine-grained tokens**에서 토큰을 만듭니다. **Repository access**는 **Only select repositories**에서 `Selim-Tools` 하나만 고르고, **Permissions**는 **Contents: Read and write**를 줍니다.
+2. 원본 저장소마다 이 토큰을 Actions 시크릿 `SELIM_TOOLS_TOKEN`으로 등록합니다: `gh secret set SELIM_TOOLS_TOKEN -R minsangOh/<원본 저장소>`
+
+원본 저장소의 릴리스는 그 저장소의 워크플로 토큰으로 받으므로, 이 토큰에는 원본 저장소 권한을 주지 않습니다. 만료 기간을 두었다면 만료되기 전에 새 토큰을 같은 이름으로 다시 등록합니다.
+
 ### Selim Tools 빌드와 배포
 
 ```powershell
@@ -138,4 +149,4 @@ python tools/publish.py hub --notes-file notes.md
 
 ### 프로그램 추가
 
-`manifest.json`의 `apps`에 항목(`id`, `name`, `description`, `kind`, `exe`, `icon`, 설치형은 `uninstall_key`)을 넣고, `tools/publish.py`의 `SOURCES`에 원본 저장소를 적은 뒤 publish를 실행합니다. `url`이 빈 항목은 Selim Tools에 나타나지 않으므로 먼저 커밋해도 됩니다. 아이콘은 `assets/`에 둡니다.
+`manifest.json`의 `apps`에 항목(`id`, `name`, `description`, `kind`, `exe`, `icon`, 설치형은 `uninstall_key`)을 넣고, `tools/publish.py`의 `SOURCES`에 원본 저장소를 적습니다. 원본 저장소에는 다른 원본 저장소의 `.github/workflows/selim-tools.yml`을 복사해 `app:`만 바꾸고, 시크릿 `SELIM_TOOLS_TOKEN`을 등록합니다. 그 뒤로는 릴리스할 때마다 자동으로 올라가고, 그 전에 만든 릴리스는 publish로 올립니다. `url`이 빈 항목은 Selim Tools에 나타나지 않으므로 먼저 커밋해도 됩니다. 아이콘은 `assets/`에 둡니다.
