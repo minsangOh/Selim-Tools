@@ -30,7 +30,7 @@ from PySide6.QtWidgets import (
 import hub_core as core
 
 APP_NAME = "Selim Tools"
-APP_VERSION = "1.0.0"
+APP_VERSION = "1.0.1"
 RESOURCE_ROOT = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
 APP_ICON = RESOURCE_ROOT / "assets" / "icon.ico"
 MANIFEST_JOB, HUB_JOB = "목록", "허브"  # 앱 작업은 앱 id를 키로 쓴다
