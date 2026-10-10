@@ -43,15 +43,15 @@
       "id": "fileray",
       "name": "FileRay",
       "description": "등록한 폴더의 파일명과 문서 본문을 인터넷 없이 빠르게 검색합니다.",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "kind": "installer",
-      "url": "https://github.com/minsangOh/Selim-Tools/releases/download/fileray-v0.5.0/FileRay_0.5.0_x64-setup.exe",
-      "sha256": "3e0c56515552291e97d50229c85c956096584341008fd5c8a37a3537149ef12a",
-      "size": 224048888,
+      "url": "https://github.com/minsangOh/Selim-Tools/releases/download/fileray-v0.6.0/FileRay_0.6.0_x64-setup.exe",
+      "sha256": "229d1cb486c9afaace807eabf383bf7c27fbbcb87854a9f02fedf2f5af98301a",
+      "size": 224046911,
       "exe": "fileray.exe",
       "uninstall_key": "FileRay",
       "icon": "assets/fileRay_Selim.png",
-      "notes": "https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.5.0"
+      "notes": "https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.6.0"
     },
     {
       "id": "pdfdiff",
