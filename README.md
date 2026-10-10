@@ -52,7 +52,7 @@
   </tr>
 </table>
 
-버전별 변경 내용은 Selim Tools의 **변경 내용** 링크나 [전체 릴리스](https://github.com/minsangOh/Selim-Tools/releases)에서 볼 수 있습니다.
+버전별 변경 내용은 아래 [업데이트 내역](#업데이트-내역)에 정리해 두었습니다. 자세한 내용은 Selim Tools의 **변경 내용** 링크나 [전체 릴리스](https://github.com/minsangOh/Selim-Tools/releases)에서 볼 수 있습니다.
 
 ### <img src="assets/ctq.ico" width="28" align="center" alt=""> CTQ 승인원 자동입력
 
@@ -65,7 +65,7 @@ Selim Tools로 설치한 CTQ는 `%LOCALAPPDATA%\SelimTools\apps\ctq\`에서 실�
 - 파일명 및 문서 본문 검색, 단어 중간에 있는 문자열도 검색
 - 결과를 끝까지 이어서 불러오는 목록
 - 등록 폴더와 하위 폴더 자동 인덱싱, 파일 추가·수정·삭제 자동 반영
-- 파일 형식, 날짜 및 폴더 범위 검색, 결과 내 재검색(포함·제외)
+- 파일 형식, 날짜 및 폴더 범위 검색, 결과 내 재검색(포함·제외, 여러 단계로 이어서)
 - 문서 내용 미리보기와 검색어 강조, 엑셀 결과의 셀 주소 표시
 - 원본 파일 열기, 탐색기에서 파일 위치 열기, 파일 경로 복사
 - 문서 북마크, 메모 및 사용자 태그
@@ -87,6 +87,52 @@ Selim Tools로 설치한 CTQ는 `%LOCALAPPDATA%\SelimTools\apps\ctq\`에서 실�
 - PDF 파일 Drag & Drop, 페이지 이동 및 확대·축소
 - 좌우 화면 위치와 동일 PDF 좌표의 커서 위치 동기화
 - 현재 비교 화면 클립보드 복사, 고해상도 디스플레이 지원
+
+---
+
+## 업데이트 내역
+
+Selim Tools로 배포하기 시작한 2026-09-27부터의 버전입니다. 새 버전을 위에 적었고, 버전을 누르면 그 릴리스 노트가 열립니다.
+
+### Selim Tools
+
+| 버전 | 날짜 | 바뀐 점 |
+|---|---|---|
+| [1.0.1](https://github.com/minsangOh/Selim-Tools/releases/tag/hub-v1.0.1) | 2026-09-28 | 설치형 프로그램을 업데이트할 때 사용자가 지운 바탕 화면 바로가기를 되살리지 않음 |
+| [1.0.0](https://github.com/minsangOh/Selim-Tools/releases/tag/hub-v1.0.0) | 2026-09-27 | 첫 버전. 네 프로그램을 버튼 하나로 설치·업데이트·실행 |
+
+### 작업지도서 자재 소요량
+
+| 버전 | 날짜 | 바뀐 점 |
+|---|---|---|
+| [1.3.1](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.3.1) | 2026-09-27 | 폴더(ZIP) 대신 exe 하나로 배포 |
+
+### CTQ 승인원 자동입력
+
+| 버전 | 날짜 | 바뀐 점 |
+|---|---|---|
+| [1.6.0](https://github.com/minsangOh/Selim-Tools/releases/tag/ctq-v1.6.0) | 2026-10-06 | 제품별 DB 정보·경로 표시, 에어컨 DB 재구축(조합 207개 → 221개) |
+| [1.5.1](https://github.com/minsangOh/Selim-Tools/releases/tag/ctq-v1.5.1) | 2026-09-30 | 에어컨 삽입부높이 시트: 도면을 원본 해상도로 더 크게 넣고, 빠지던 기준값(SPEC)을 채움 |
+| [1.5.0](https://github.com/minsangOh/Selim-Tools/releases/tag/ctq-v1.5.0) | 2026-09-29 | 승인원 파일 끌어다 놓기, 다른 제품 DB에만 있는 터미널·와이어도 드롭다운에 표시 |
+| [1.4.0](https://github.com/minsangOh/Selim-Tools/releases/tag/ctq-v1.4.0) | 2026-09-28 | 시트 선택, 백업 파일 없이 원본에 저장, 속도 개선, 와이어 → 터미널 드롭다운, DB 기본 위치를 팀 NAS로 |
+| [1.3.0](https://github.com/minsangOh/Selim-Tools/releases/tag/ctq-v1.3.0) | 2026-09-27 | exe 아이콘·시작 화면·파일 속성 |
+
+### FileRay
+
+| 버전 | 날짜 | 바뀐 점 |
+|---|---|---|
+| [0.6.0](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.6.0) | 2026-10-10 | 결과 내 검색을 여러 단계로 이어 가기 (Enter로 조건 고정, 포함·제외 섞기) |
+| [0.5.0](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.5.0) | 2026-10-10 | 영어 화면, Selim Tools 없이 스스로 업데이트 |
+| [0.4.0](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.4.0) | 2026-09-27 | 결과를 끝까지 이어서 불러오기, 단어 중간 문자열 검색, 엑셀 셀 주소, 결과 내 재검색 제외 모드, HWP 표 안 글자 등 검색 누락 수정 |
+
+### Selim PDF Diff
+
+| 버전 | 날짜 | 바뀐 점 |
+|---|---|---|
+| [2.1.1](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.1.1) | 2026-10-11 | 기능 변경 없음. 자동 업데이트 동작 확인용 |
+| [2.1.0](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.1.0) | 2026-10-10 | 영어 화면, Selim Tools 없이 스스로 업데이트 |
+| [2.0.2](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.0.2) | 2026-09-28 | 바뀐 부분 음영이 줄무늬로 보이던 문제 수정, 렌더링을 별도 프로세스로 옮겨 확대·축소 끊김 개선 |
+| [2.0.1](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.0.1) | 2026-09-28 | 업데이트할 때 지난 버전의 파일을 지우고 새로 설치 |
 
 ---
 
@@ -115,8 +161,8 @@ FileRay와 Selim PDF Diff는 Selim Tools 없이 각 프로그램의 설치 파�
 | 팀 | 작업지도서·CTQ까지 쓰는 PC | Selim Tools | Selim Tools에서 실행할 때 |
 | 전사 | FileRay·Selim PDF Diff만 쓰는 PC | 각 프로그램의 설치 파일 | 프로그램이 스스로 |
 
-- 설치 파일은 [전체 릴리스](https://github.com/minsangOh/Selim-Tools/releases)의 `fileray-v…`, `pdfdiff-v…`에 있습니다. FileRay 0.4.0과 Selim PDF Diff 2.0.2에는 자동 업데이트가 없으므로, 전사 배포는 그다음 릴리스부터 합니다. 그 뒤로는 예전 버전의 설치 파일을 나눠 줘도 처음 실행할 때 최신 버전을 받습니다.
-- 프로그램은 시작하고 잠시 뒤 새 버전이 있는지 확인합니다. 새 버전이 있으면 설치 파일을 받아 두었다가 프로그램을 닫을 때 조용히 설치합니다. 업데이트 버튼을 누르면 바로 설치하고 다시 시작합니다.
+- 설치 파일은 [전체 릴리스](https://github.com/minsangOh/Selim-Tools/releases)의 `fileray-v…`, `pdfdiff-v…`에 있습니다. 자동 업데이트는 FileRay 0.5.0, Selim PDF Diff 2.1.0부터 들어 있으므로, 그보다 예전 버전이 설치된 PC는 최신 설치 파일로 한 번 다시 설치합니다. 그 뒤로는 스스로 최신 버전을 받습니다. Selim Tools가 없는 PC에서 FileRay 0.5.0 → 0.6.0, Selim PDF Diff 2.1.0 → 2.1.1로 업데이트되는 것을 확인했습니다.
+- 프로그램은 시작하고 잠시 뒤 새 버전이 있는지 확인합니다. 새 버전이 있으면 설치 파일을 받아 두었다가 프로그램을 닫을 때 조용히 설치합니다. 업데이트 버튼을 누르면 바로 설치하고 다시 시작합니다. 확인은 켤 때 한 번만 하므로, 새 버전이 나오기 전부터 켜 둔 프로그램은 다시 켜야 받습니다.
 - 받은 설치 파일은 목록에 적힌 크기·SHA-256과 같을 때만 설치합니다. 목록과 설치 파일을 받기만 하고, 문서 내용이나 사용 기록은 보내지 않습니다.
 - 인터넷에 연결되지 않으면 확인을 건너뛰고 설치된 버전을 그대로 씁니다. 회사 방화벽이 `raw.githubusercontent.com`, `github.com`, `release-assets.githubusercontent.com`(예전 주소 `objects.githubusercontent.com`)로 가는 HTTPS를 막으면 업데이트되지 않습니다.
 - 화면 언어는 Windows 표시 언어를 따르고, 한국어가 아니면 영어로 표시합니다. FileRay는 설정 → 일반에서, Selim PDF Diff는 화면 오른쪽의 언어 버튼으로 바꿀 수 있습니다.
@@ -147,6 +193,7 @@ python tools/publish.py fileray --tag v0.4.0   # 태그 지정
 - 목록보다 낮거나 같은 버전은 올리지 않습니다. 같은 버전이 두 번 올라가거나 목록이 옛 버전으로 되돌아가지 않게 하기 위해서입니다.
 - 앱 릴리스의 태그는 `<id>-v<버전>`입니다. Selim Tools 릴리스(`hub-v…`)만 **Latest**로 두어, 위의 "최신 릴리스" 링크가 늘 Selim Tools 설치 파일을 가리키게 합니다.
 - `manifest.json`이 바뀌면 각 PC의 Selim Tools는 다음 실행이나 **새로 고침** 때 새 목록을 받습니다 (GitHub 캐시로 몇 분 늦을 수 있습니다).
+- 자동 배포는 README를 고치지 않으므로, 배포한 뒤 [업데이트 내역](#업데이트-내역)에 한 줄을 더합니다.
 
 ### 자동 배포 설정
 
