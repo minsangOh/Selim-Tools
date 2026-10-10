@@ -106,9 +106,26 @@ Selim Tools를 제거해도 Selim Tools가 설치한 프로그램과 그 데이�
 
 ---
 
+## 전사 배포: FileRay·Selim PDF Diff
+
+FileRay와 Selim PDF Diff는 Selim Tools 없이 각 프로그램의 설치 파일만 나눠 줘도 됩니다. 두 프로그램은 Selim Tools와 같은 [`manifest.json`](manifest.json)을 직접 확인해 스스로 업데이트합니다. 따라서 릴리스 한 번으로 두 트랙에 함께 반영됩니다.
+
+| 트랙 | 쓰는 PC | 설치 | 업데이트 |
+|---|---|---|---|
+| 팀 | 작업지도서·CTQ까지 쓰는 PC | Selim Tools | Selim Tools에서 실행할 때 |
+| 전사 | FileRay·Selim PDF Diff만 쓰는 PC | 각 프로그램의 설치 파일 | 프로그램이 스스로 |
+
+- 설치 파일은 [전체 릴리스](https://github.com/minsangOh/Selim-Tools/releases)의 `fileray-v…`, `pdfdiff-v…`에 있습니다. FileRay 0.4.0과 Selim PDF Diff 2.0.2에는 자동 업데이트가 없으므로, 전사 배포는 그다음 릴리스부터 합니다. 그 뒤로는 예전 버전의 설치 파일을 나눠 줘도 처음 실행할 때 최신 버전을 받습니다.
+- 프로그램은 시작하고 잠시 뒤 새 버전이 있는지 확인합니다. 새 버전이 있으면 설치 파일을 받아 두었다가 프로그램을 닫을 때 조용히 설치합니다. 업데이트 버튼을 누르면 바로 설치하고 다시 시작합니다.
+- 받은 설치 파일은 목록에 적힌 크기·SHA-256과 같을 때만 설치합니다. 목록과 설치 파일을 받기만 하고, 문서 내용이나 사용 기록은 보내지 않습니다.
+- 인터넷에 연결되지 않으면 확인을 건너뛰고 설치된 버전을 그대로 씁니다. 회사 방화벽이 `raw.githubusercontent.com`, `github.com`, `release-assets.githubusercontent.com`(예전 주소 `objects.githubusercontent.com`)로 가는 HTTPS를 막으면 업데이트되지 않습니다.
+- 화면 언어는 Windows 표시 언어를 따르고, 한국어가 아니면 영어로 표시합니다. FileRay는 설정 → 일반에서, Selim PDF Diff는 화면 오른쪽의 언어 버튼으로 바꿀 수 있습니다.
+
+---
+
 ## 관리자용: 새 버전 배포
 
-Selim Tools는 이 저장소 `master`의 [`manifest.json`](manifest.json)을 읽어 프로그램마다 최신 버전을 판단합니다. 원본 저장소에 정식 릴리스를 만들면 원본 저장소의 `.github/workflows/selim-tools.yml`이 이 저장소의 [`publish.yml`](.github/workflows/publish.yml)을 부르고, Selim-Tools 릴리스 생성부터 `manifest.json` 갱신·푸시까지 자동으로 처리합니다. 결과는 원본 저장소의 **Actions** 탭에서 볼 수 있습니다. 프리릴리스는 올리지 않습니다.
+Selim Tools는 이 저장소 `master`의 [`manifest.json`](manifest.json)을 읽어 프로그램마다 최신 버전을 판단합니다. FileRay와 Selim PDF Diff도 같은 목록에서 자기 항목(`id`, `version`, `url`, `sha256`, `size`)을 읽어 스스로 업데이트합니다. 이미 배포된 프로그램이 계속 업데이트를 받을 수 있도록, 이 필드와 `schema: 1`은 바꾸지 않습니다. 원본 저장소에 정식 릴리스를 만들면 원본 저장소의 `.github/workflows/selim-tools.yml`이 이 저장소의 [`publish.yml`](.github/workflows/publish.yml)을 부르고, Selim-Tools 릴리스 생성부터 `manifest.json` 갱신·푸시까지 자동으로 처리합니다. 결과는 원본 저장소의 **Actions** 탭에서 볼 수 있습니다. 프리릴리스는 올리지 않습니다.
 
 자동 실행이 실패했거나 지난 릴리스를 올릴 때는 원본 저장소의 **Actions → Selim Tools에 올리기 → Run workflow**에 태그를 넣어 실행합니다. 이 저장소에서 직접 실행해도 됩니다 (gh CLI 로그인 필요).
 
@@ -125,6 +142,7 @@ python tools/publish.py fileray --tag v0.4.0   # 태그 지정
 | `pdfdiff` | Selim PDF Diff | Diff_PDF | NSIS 설치 파일 |
 
 - 원본 릴리스에는 `.exe` 첨부 파일이 하나만 있어야 합니다. 설치형은 관리자 권한 없이 `/S`로 무인 설치되는 사용자 단위 NSIS여야 합니다. 이미 설치된 앱을 업데이트할 때는 `/UPDATE`도 함께 넘깁니다. FileRay 같은 Tauri 설치 파일은 이 옵션이 있으면 사용자가 지운 바로가기를 되살리지 않고, 이 옵션을 모르는 설치 파일은 무시합니다.
+- FileRay와 Selim PDF Diff가 스스로 업데이트할 때도 같은 설치 파일을 `/S`로 실행합니다. 프로그램을 닫는 중에 실행하므로 설치 파일은 프로그램이 끝나기를 기다렸다가 덮어써야 합니다. 업데이트 버튼으로 실행할 때는 `/R`을 더 넘기며, 설치 파일은 설치를 마친 뒤 프로그램을 다시 실행해야 합니다. Tauri 설치 파일은 이 동작을 기본으로 지원하고, Selim PDF Diff는 설치 스크립트에서 처리합니다.
 - 설치형은 설치 파일이 기록하는 버전(`DisplayVersion`)이 릴리스 태그와 같아야 합니다. 다르면 Selim Tools가 설치를 마친 뒤에도 옛 버전으로 보고 실행할 때마다 다시 설치합니다. 업데이트할 때 지난 버전의 파일을 지우는 것도 설치 파일이 합니다 (예: `_internal`을 비운 뒤 복사).
 - 목록보다 낮거나 같은 버전은 올리지 않습니다. 같은 버전이 두 번 올라가거나 목록이 옛 버전으로 되돌아가지 않게 하기 위해서입니다.
 - 앱 릴리스의 태그는 `<id>-v<버전>`입니다. Selim Tools 릴리스(`hub-v…`)만 **Latest**로 두어, 위의 "최신 릴리스" 링크가 늘 Selim Tools 설치 파일을 가리키게 합니다.
