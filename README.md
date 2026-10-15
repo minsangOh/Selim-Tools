@@ -105,6 +105,13 @@ Selim Tools로 배포하기 시작한 2026-09-27부터의 버전입니다. 새 �
 
 | 버전 | 날짜 | 바뀐 점 |
 |---|---|---|
+| [1.6.2](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.6.2) | 2026-10-15 | 원본을 고쳐 저장할 때 `1/2`·`001` 같은 글자가 날짜·숫자로 바뀌던 문제와 시트 크기 정보가 없는 xlsx 오류 수정, 실행 환경을 Python 3.14로 바꾼 보안 업데이트. 배포하지 않은 1.6.1의 내용(Excel 미리보기에서 고치는 칸 강조, 항목이 양식 줄 수보다 많으면 결과 파일을 만들지 못하던 문제 수정)도 포함 |
+| [1.6.0](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.6.0) | 2026-10-15 | 확인 필요 처리 창에 그 행의 Excel 미리보기 표시 |
+| [1.5.0](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.5.0) | 2026-10-15 | 확인 필요 항목을 프로그램에서 처리: 원본 칸을 고쳐 바로 저장(저장 전 자동 백업, Excel 필요), 통과·집계 제외와 되돌리기, 결과 파일에 처리 내용 기록 |
+| [1.4.3](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.4.3) | 2026-10-15 | 단위가 빈 부자재를 확인 필요로 잡지 않고 단위 공란으로 집계 |
+| [1.4.2](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.4.2) | 2026-10-15 | 확인 필요 항목을 결과 파일 없이 화면에서 바로 확인 |
+| [1.4.1](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.4.1) | 2026-10-15 | 집계 범위에 읽는 시트·행·열 표시, 길이 단위 선택 제거(전선 길이는 항상 mm로 읽어 m로 변환) |
+| [1.4.0](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.4.0) | 2026-10-15 | 제품/ASSY 선택 없이 작업지도서 전체를 한 번에 합산, PT 시트의 상위 제품 코드 자재도 집계, 결과 파일 이름을 작업지도서 이름으로, 시작할 때 업데이트 내역 창, 새 버전 자동 업데이트 |
 | [1.3.1](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.3.1) | 2026-09-27 | 폴더(ZIP) 대신 exe 하나로 배포 |
 
 ### CTQ 승인원 자동입력
@@ -121,6 +128,11 @@ Selim Tools로 배포하기 시작한 2026-09-27부터의 버전입니다. 새 �
 
 | 버전 | 날짜 | 바뀐 점 |
 |---|---|---|
+| [0.7.4](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.7.4) | 2026-10-13 | 켤 때 지난 버전까지의 업데이트 내역을 한 창에서 보기, 이번 버전에서 다시 보지 않기 |
+| [0.7.3](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.7.3) | 2026-10-12 | 켜 둔 동안에도 새 버전 확인(6시간마다, 창으로 돌아왔을 때), 업데이트를 받으면 Windows 알림 |
+| [0.7.2](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.7.2) | 2026-10-12 | 신뢰도순 정렬과 최소 신뢰도 설정 제거 |
+| [0.7.1](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.7.1) | 2026-10-12 | NAS·공유 폴더 변경을 자동 동기화 설정과 상관없이 15분마다 반영 |
+| [0.7.0](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.7.0) | 2026-10-12 | 형식·기간 필터와 결과 내 검색을 검색 전체에 적용, 회사 NAS·공유 폴더 등록, Outlook 메일(.msg) 검색, 트레이 상주(`Ctrl+Alt+F`), 꺼져 있는 동안 지운 파일이 결과에 남던 문제 수정 |
 | [0.6.0](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.6.0) | 2026-10-10 | 결과 내 검색을 여러 단계로 이어 가기 (Enter로 조건 고정, 포함·제외 섞기) |
 | [0.5.0](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.5.0) | 2026-10-10 | 영어 화면, Selim Tools 없이 스스로 업데이트 |
 | [0.4.0](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.4.0) | 2026-09-27 | 결과를 끝까지 이어서 불러오기, 단어 중간 문자열 검색, 엑셀 셀 주소, 결과 내 재검색 제외 모드, HWP 표 안 글자 등 검색 누락 수정 |
@@ -129,6 +141,8 @@ Selim Tools로 배포하기 시작한 2026-09-27부터의 버전입니다. 새 �
 
 | 버전 | 날짜 | 바뀐 점 |
 |---|---|---|
+| [2.1.3](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.1.3) | 2026-10-13 | 화면 왼쪽 위 회사 로고를 새 로고로 변경 |
+| [2.1.2](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.1.2) | 2026-10-13 | 시작할 때 버전별 업데이트 내역 창 표시, 다시 보지 않기 |
 | [2.1.1](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.1.1) | 2026-10-11 | 기능 변경 없음. 자동 업데이트 동작 확인용 |
 | [2.1.0](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.1.0) | 2026-10-10 | 영어 화면, Selim Tools 없이 스스로 업데이트 |
 | [2.0.2](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.0.2) | 2026-09-28 | 바뀐 부분 음영이 줄무늬로 보이던 문제 수정, 렌더링을 별도 프로세스로 옮겨 확대·축소 끊김 개선 |
