@@ -17,14 +17,14 @@
       "id": "wim",
       "name": "작업지도서 자재 소요량",
       "description": "작업지도서 Excel에서 전선·터미널·부자재 소요량을 모아 결과 파일로 만듭니다.",
-      "version": "1.4.3",
+      "version": "1.5.0",
       "kind": "portable",
-      "url": "https://github.com/minsangOh/Selim-Tools/releases/download/wim-v1.4.3/work-instruction-materials-gui-v1.4.3.exe",
-      "sha256": "01c8dc08b84e32e02729350cd3ebde2503954e75a889f18e99032bcb48c4de6a",
-      "size": 50514450,
+      "url": "https://github.com/minsangOh/Selim-Tools/releases/download/wim-v1.5.0/work-instruction-materials-gui-v1.5.0.exe",
+      "sha256": "e27a9d1fe2896db6c03ac5067030c8ef6cfc3bd9c42df584ec492faa5b778db7",
+      "size": 54304851,
       "exe": "작업지도서 자재 소요량.exe",
       "icon": "assets/wim.ico",
-      "notes": "https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.4.3"
+      "notes": "https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.5.0"
     },
     {
       "id": "ctq",
