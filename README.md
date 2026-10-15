@@ -128,6 +128,7 @@ Selim Tools로 배포하기 시작한 2026-09-27부터의 버전입니다. 새 �
 
 | 버전 | 날짜 | 바뀐 점 |
 |---|---|---|
+| [0.8.0](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.8.0) | 2026-10-15 | 값이 먼 칸에 떨어진 일부 엑셀 파일을 색인하면 꺼지던 문제 수정, 폴더 감시가 멈추면 다시 맞추고 이어 감, 업데이트 다운로드가 멈추면 새 버전 확인이 멈추던 문제 수정, 보안 업데이트(Tauri·quick-xml·calamine, HWP 구성요소 제외) |
 | [0.7.4](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.7.4) | 2026-10-13 | 켤 때 지난 버전까지의 업데이트 내역을 한 창에서 보기, 이번 버전에서 다시 보지 않기 |
 | [0.7.3](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.7.3) | 2026-10-12 | 켜 둔 동안에도 새 버전 확인(6시간마다, 창으로 돌아왔을 때), 업데이트를 받으면 Windows 알림 |
 | [0.7.2](https://github.com/minsangOh/Selim-Tools/releases/tag/fileray-v0.7.2) | 2026-10-12 | 신뢰도순 정렬과 최소 신뢰도 설정 제거 |
