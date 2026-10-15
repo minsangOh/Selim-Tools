@@ -105,6 +105,13 @@ Selim Tools로 배포하기 시작한 2026-09-27부터의 버전입니다. 새 �
 
 | 버전 | 날짜 | 바뀐 점 |
 |---|---|---|
+| [1.6.2](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.6.2) | 2026-10-15 | 원본을 고쳐 저장할 때 `1/2`·`001` 같은 글자가 날짜·숫자로 바뀌던 문제와 시트 크기 정보가 없는 xlsx 오류 수정, 실행 환경을 Python 3.14로 바꾼 보안 업데이트. 배포하지 않은 1.6.1의 내용(Excel 미리보기에서 고치는 칸 강조, 항목이 양식 줄 수보다 많으면 결과 파일을 만들지 못하던 문제 수정)도 포함 |
+| [1.6.0](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.6.0) | 2026-10-15 | 확인 필요 처리 창에 그 행의 Excel 미리보기 표시 |
+| [1.5.0](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.5.0) | 2026-10-15 | 확인 필요 항목을 프로그램에서 처리: 원본 칸을 고쳐 바로 저장(저장 전 자동 백업, Excel 필요), 통과·집계 제외와 되돌리기, 결과 파일에 처리 내용 기록 |
+| [1.4.3](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.4.3) | 2026-10-15 | 단위가 빈 부자재를 확인 필요로 잡지 않고 단위 공란으로 집계 |
+| [1.4.2](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.4.2) | 2026-10-15 | 확인 필요 항목을 결과 파일 없이 화면에서 바로 확인 |
+| [1.4.1](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.4.1) | 2026-10-15 | 집계 범위에 읽는 시트·행·열 표시, 길이 단위 선택 제거(전선 길이는 항상 mm로 읽어 m로 변환) |
+| [1.4.0](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.4.0) | 2026-10-15 | 제품/ASSY 선택 없이 작업지도서 전체를 한 번에 합산, PT 시트의 상위 제품 코드 자재도 집계, 결과 파일 이름을 작업지도서 이름으로, 시작할 때 업데이트 내역 창, 새 버전 자동 업데이트 |
 | [1.3.1](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.3.1) | 2026-09-27 | 폴더(ZIP) 대신 exe 하나로 배포 |
 
 ### CTQ 승인원 자동입력
