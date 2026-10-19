@@ -99,6 +99,7 @@ Selim Tools로 배포하기 시작한 2026-09-27부터의 버전입니다. 새 �
 
 | 버전 | 날짜 | 바뀐 점 |
 |---|---|---|
+| [1.0.2](https://github.com/minsangOh/Selim-Tools/releases/tag/hub-v1.0.2) | 2026-10-19 | 허브를 여러 번 실행해도 창이 중복으로 열리지 않도록 수정 |
 | [1.0.1](https://github.com/minsangOh/Selim-Tools/releases/tag/hub-v1.0.1) | 2026-09-28 | 설치형 프로그램을 업데이트할 때 사용자가 지운 바탕 화면 바로가기를 되살리지 않음 |
 | [1.0.0](https://github.com/minsangOh/Selim-Tools/releases/tag/hub-v1.0.0) | 2026-09-27 | 첫 버전. 네 프로그램을 버튼 하나로 설치·업데이트·실행 |
 
@@ -106,6 +107,7 @@ Selim Tools로 배포하기 시작한 2026-09-27부터의 버전입니다. 새 �
 
 | 버전 | 날짜 | 바뀐 점 |
 |---|---|---|
+| [1.7.2](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.7.2) | 2026-10-19 | 중복 실행 방지, 업데이트 후 기존 프로그램 종료를 기다렸다가 새 버전 실행 |
 | [1.6.2](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.6.2) | 2026-10-15 | 원본을 고쳐 저장할 때 `1/2`·`001` 같은 글자가 날짜·숫자로 바뀌던 문제와 시트 크기 정보가 없는 xlsx 오류 수정, 실행 환경을 Python 3.14로 바꾼 보안 업데이트. 배포하지 않은 1.6.1의 내용(Excel 미리보기에서 고치는 칸 강조, 항목이 양식 줄 수보다 많으면 결과 파일을 만들지 못하던 문제 수정)도 포함 |
 | [1.6.0](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.6.0) | 2026-10-15 | 확인 필요 처리 창에 그 행의 Excel 미리보기 표시 |
 | [1.5.0](https://github.com/minsangOh/Selim-Tools/releases/tag/wim-v1.5.0) | 2026-10-15 | 확인 필요 항목을 프로그램에서 처리: 원본 칸을 고쳐 바로 저장(저장 전 자동 백업, Excel 필요), 통과·집계 제외와 되돌리기, 결과 파일에 처리 내용 기록 |
@@ -119,6 +121,7 @@ Selim Tools로 배포하기 시작한 2026-09-27부터의 버전입니다. 새 �
 
 | 버전 | 날짜 | 바뀐 점 |
 |---|---|---|
+| [1.6.2](https://github.com/minsangOh/Selim-Tools/releases/tag/ctq-v1.6.2) | 2026-10-19 | 프로그램을 여러 번 실행해도 창이 중복으로 열리지 않도록 수정 |
 | [1.6.0](https://github.com/minsangOh/Selim-Tools/releases/tag/ctq-v1.6.0) | 2026-10-06 | 제품별 DB 정보·경로 표시, 에어컨 DB 재구축(조합 207개 → 221개) |
 | [1.5.1](https://github.com/minsangOh/Selim-Tools/releases/tag/ctq-v1.5.1) | 2026-09-30 | 에어컨 삽입부높이 시트: 도면을 원본 해상도로 더 크게 넣고, 빠지던 기준값(SPEC)을 채움 |
 | [1.5.0](https://github.com/minsangOh/Selim-Tools/releases/tag/ctq-v1.5.0) | 2026-09-29 | 승인원 파일 끌어다 놓기, 다른 제품 DB에만 있는 터미널·와이어도 드롭다운에 표시 |
@@ -143,6 +146,7 @@ Selim Tools로 배포하기 시작한 2026-09-27부터의 버전입니다. 새 �
 
 | 버전 | 날짜 | 바뀐 점 |
 |---|---|---|
+| [2.1.5](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.1.5) | 2026-10-19 | 프로그램을 여러 번 실행해도 창이 중복으로 열리지 않도록 수정 |
 | [2.1.3](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.1.3) | 2026-10-13 | 화면 왼쪽 위 회사 로고를 새 로고로 변경 |
 | [2.1.2](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.1.2) | 2026-10-13 | 시작할 때 버전별 업데이트 내역 창 표시, 다시 보지 않기 |
 | [2.1.1](https://github.com/minsangOh/Selim-Tools/releases/tag/pdfdiff-v2.1.1) | 2026-10-11 | 기능 변경 없음. 자동 업데이트 동작 확인용 |
