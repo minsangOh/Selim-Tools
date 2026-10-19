@@ -404,6 +404,11 @@ class MainWindow(QMainWindow):
 
 
 def main() -> int:
+    from single_instance import acquire
+
+    if not acquire("hub"):
+        return 0
+
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("--manifest", default=core.MANIFEST_URL)  # 시험용 목록 주소 (file:// 도 된다)
     args, _ = parser.parse_known_args()
