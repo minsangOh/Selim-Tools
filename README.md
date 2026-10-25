@@ -193,6 +193,8 @@ FileRay와 Selim PDF Diff는 Selim Tools 없이 각 프로그램의 설치 파�
 
 Selim Tools는 이 저장소 `master`의 [`manifest.json`](manifest.json)을 읽어 프로그램마다 최신 버전을 판단합니다. FileRay와 Selim PDF Diff도 같은 목록에서 자기 항목(`id`, `version`, `url`, `sha256`, `size`)을 읽어 스스로 업데이트합니다. 이미 배포된 프로그램이 계속 업데이트를 받을 수 있도록, 이 필드와 `schema: 1`은 바꾸지 않습니다. 원본 저장소에 정식 릴리스를 만들면 원본 저장소의 `.github/workflows/selim-tools.yml`이 이 저장소의 [`publish.yml`](.github/workflows/publish.yml)을 부르고, Selim-Tools 릴리스 생성부터 `manifest.json` 갱신·푸시까지 자동으로 처리합니다. 결과는 원본 저장소의 **Actions** 탭에서 볼 수 있습니다. 프리릴리스는 올리지 않습니다.
 
+`fileray` 항목에는 macOS 자동 업데이트 파일(`.app.tar.gz`)의 `version`, `url`, `sha256`, `size`를 담은 선택 필드 `mac`을 추가할 수 있으며, Windows 프로그램과 Selim Tools는 이 필드를 무시합니다. 맥 파일이 없는 릴리스에서는 기존 `mac` 정보를 유지하므로 맥 버전은 Windows와 다를 수 있습니다.
+
 자동 실행이 실패했거나 지난 릴리스를 올릴 때는 원본 저장소의 **Actions → Selim Tools에 올리기 → Run workflow**에 태그를 넣어 실행합니다. 이 저장소에서 직접 실행해도 됩니다 (gh CLI 로그인 필요).
 
 ```powershell
