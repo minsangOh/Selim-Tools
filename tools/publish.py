@@ -24,7 +24,7 @@ from pathlib import Path
 REPO = "minsangOh/Selim-Tools"
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "manifest.json"
-# 앱 id → 릴리스를 만드는 원본 저장소. 릴리스 첨부 파일 중 .exe 하나를 올린다
+# 앱 id → 릴리스를 만드는 원본 저장소. .exe 하나와 FileRay의 맥 업데이트 파일이 있으면 함께 올린다
 SOURCES = {
     "wim": "minsangOh/work-instruction-materials-gui",
     "ctq": "minsangOh/CTQ_DB_Tool",
@@ -53,8 +53,8 @@ def version_key(text: str) -> tuple[int, ...]:
     return tuple(int(part) for part in re.findall(r"\d+", text))
 
 
-def source_release(app_id: str, tag: str | None, folder: Path) -> tuple[str, Path, str, str]:
-    """원본 릴리스의 exe를 받는다. (버전, 파일, 릴리스 노트, GitHub에 기록된 sha256)"""
+def source_release(app_id: str, tag: str | None, folder: Path) -> tuple[str, Path, str, str, tuple[Path, str] | None]:
+    """원본 릴리스의 exe와 FileRay 맥 파일을 받는다. (버전, exe, 노트, GitHub sha256, 선택적 (맥 파일, sha256))"""
     repo = SOURCES[app_id]
     # GitHub Actions에서는 원본 저장소가 넘겨준 토큰으로 받는다. 원본 저장소는 비공개라 Selim-Tools용 토큰으로는 읽지 못한다
     token = os.environ.get("SOURCE_GH_TOKEN")
@@ -62,9 +62,17 @@ def source_release(app_id: str, tag: str | None, folder: Path) -> tuple[str, Pat
     exes = [asset for asset in info["assets"] if asset["name"].lower().endswith(".exe")]
     if len(exes) != 1:
         sys.exit(f"{repo} {info['tag_name']}: exe 첨부 파일이 {len(exes)}개입니다. 하나여야 합니다.")
+    macs = [asset for asset in info["assets"] if app_id == "fileray" and asset["name"].lower().endswith(".app.tar.gz")]
+    if len(macs) > 1:
+        sys.exit(f"{repo} {info['tag_name']}: 맥 업데이트 첨부 파일이 {len(macs)}개입니다. 하나 이하여야 합니다.")
     asset = exes[0]
     run("gh", "release", "download", info["tag_name"], "-R", repo, "-p", asset["name"], "-D", str(folder), token=token)
-    return info["tag_name"].lstrip("v"), folder / asset["name"], info["body"] or "", asset.get("digest") or ""
+    mac = None
+    if macs:
+        mac_asset = macs[0]
+        run("gh", "release", "download", info["tag_name"], "-R", repo, "-p", mac_asset["name"], "-D", str(folder), token=token)
+        mac = folder / mac_asset["name"], mac_asset.get("digest") or ""
+    return info["tag_name"].lstrip("v"), folder / asset["name"], info["body"] or "", asset.get("digest") or "", mac
 
 
 def hub_installer() -> tuple[str, Path]:
@@ -95,19 +103,28 @@ def main() -> None:
         if args.app == "hub":
             version, path = hub_installer()
             notes, expected = "", ""
+            mac = None
         else:
-            version, path, notes, expected = source_release(args.app, args.tag, Path(folder))
+            version, path, notes, expected, mac = source_release(args.app, args.tag, Path(folder))
         # 같은 버전을 다시 올리거나 목록을 옛 버전으로 되돌리지 않는다
         if entry["version"] and version_key(version) <= version_key(entry["version"]):
             sys.exit(f"{entry['name']}: 목록에 이미 v{entry['version']}이 있어 v{version}은 올리지 않습니다.")
         digest = sha256(path)
         if expected and expected != f"sha256:{digest}":
             sys.exit(f"{path.name}: 받은 파일의 해시가 GitHub에 기록된 값과 다릅니다.")
+        if mac:
+            mac_path, mac_expected = mac
+            mac_digest = sha256(mac_path)
+            if mac_expected and mac_expected != f"sha256:{mac_digest}":
+                sys.exit(f"{mac_path.name}: 받은 파일의 해시가 GitHub에 기록된 값과 다릅니다.")
+            mac_size = mac_path.stat().st_size
         if args.notes_file:
             notes = args.notes_file.read_text(encoding="utf-8")
         tag = f"{args.app}-v{version}"
         size = path.stat().st_size
         print(f"{entry['name']} v{version}: {path.name} ({size:,} bytes)")
+        if mac:
+            print(f"  맥 업데이트: {mac_path.name} ({mac_size:,} bytes)")
         print(f"→ {REPO}에 릴리스 {tag}를 공개하고 manifest.json을 {branch} 브랜치에 푸시합니다.")
         if branch != "master":
             print("  master가 아니므로 허브에는 master에 머지한 뒤에 반영됩니다.")
@@ -117,12 +134,16 @@ def main() -> None:
         notes_file = Path(folder) / "notes.md"
         notes_file.write_text(notes or f"{entry['name']} v{version}", encoding="utf-8")
         # 허브 릴리스만 Latest로 둔다. README의 '최신 릴리스' 링크가 늘 허브 설치 파일을 가리키게 하기 위해서다
-        run("gh", "release", "create", tag, str(path), "-R", REPO, "--title", f"{entry['name']} v{version}",
-            "--notes-file", str(notes_file), f"--latest={'true' if args.app == 'hub' else 'false'}")
+        run("gh", "release", "create", tag, str(path), *([str(mac_path)] if mac else []), "-R", REPO,
+            "--title", f"{entry['name']} v{version}", "--notes-file", str(notes_file), f"--latest={'true' if args.app == 'hub' else 'false'}")
 
     release = json.loads(run("gh", "api", f"repos/{REPO}/releases/tags/{tag}"))
-    entry.update(version=version, url=release["assets"][0]["browser_download_url"], sha256=digest, size=size,
+    url = next(asset["browser_download_url"] for asset in release["assets"] if asset["name"] == path.name)
+    entry.update(version=version, url=url, sha256=digest, size=size,
                  notes=release["html_url"])
+    if mac:
+        mac_url = next(asset["browser_download_url"] for asset in release["assets"] if asset["name"] == mac_path.name)
+        entry["mac"] = dict(version=version, url=mac_url, sha256=mac_digest, size=mac_size)
     MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     run("git", "add", "manifest.json")
     run("git", "commit", "-m", f"Publish {entry['name']} v{version}")
